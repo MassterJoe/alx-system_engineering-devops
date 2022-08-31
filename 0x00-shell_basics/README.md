@@ -1,0 +1,1 @@
+To list the current working directory i used pwd
