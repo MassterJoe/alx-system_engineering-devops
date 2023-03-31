@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# This script displays time in hours and minutes hour=0;
+# This script displays time in hours and minutes
+hour=0;
 minute=1
 while [[ $hour -le 12 ]]
 do
