@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
 # Script that configures Ngix server with a custom header
 
-sudo apt-get update -y
-sudo apt-get install nginx -y
-
-
+echo "Hello World" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/error_404.html
 
 sudo bash -c "cat > /etc/nginx/sites-available/default <<EOF
 server {
        listen 80 default_server;
        listen [::]:80 default_server;
+       add_header X-Served-By $hostname;
        server_name _;
-       add_header X-Served-By \$hostname;
        root /var/www/html;
-       index index.html index.htm;
+       index index.html index.htm index.nginx-debian.html;
        location / {
-       		try_files \$uri \$uri/ =404;
+        try_files \$uri \$uri \$url/ =404;
        }
+        error_page 404 /error_404.html;
+        location = /error_404.html {
+        internal;
+        }
 }
 
 EOF"
-sudo service start nginx
+sudo service nginx start
