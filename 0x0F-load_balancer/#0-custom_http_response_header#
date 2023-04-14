@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script that configures Ngix server with a custom header
+apt-get update -y
+apt-get install nginx -y
+ "Hello World!" > /usr/share/nginx/html/custom_404.html
