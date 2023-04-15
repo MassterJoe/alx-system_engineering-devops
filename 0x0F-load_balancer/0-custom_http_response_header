@@ -15,6 +15,9 @@ server {
        location / {
         try_files $uri $uri $url /=404;
        }
+       if (\$request_filename - redirect_me){
+       rewrite ^ https://masterjoe.tech/ permanent;
+       }
         error_page 404 /error_404.html;
         location = /error_404.html {
         internal;
