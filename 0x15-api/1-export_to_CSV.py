@@ -9,16 +9,20 @@ import sys
 
 
 if __name__ == "__main__":
+    # get args
     employee_id = sys.argv[1]
+    # retrieve url
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
     response = requests.get(url)
     todos = response.json()
 
+    # get the number of completed to-dos
     num_completed = 0
     for todo in todos:
         if todo["completed"]:
             num_completed += 1
 
+    # retrieve the todo and save as csv
     num_tasks = len(todos)
     url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     response = requests.get(url)
