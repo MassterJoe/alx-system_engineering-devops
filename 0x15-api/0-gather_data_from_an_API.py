@@ -7,8 +7,8 @@ if __name__ == "__main__":
     # get args
     employee_id = sys.argv[1]
     # fetch url from a fake api
-    url = "https://jsonplaceholder.typicode.com/users/{}/todos".
-    format(employee_id)
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        employee_id)
     response = requests.get(url)
     todos = response.json()
 
