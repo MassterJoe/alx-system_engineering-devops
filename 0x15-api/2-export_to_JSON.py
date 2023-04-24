@@ -27,7 +27,7 @@ if __name__ == "__main__":
         values = [todo.get("title"), todo.get("completed"), user_name]
         dict1 = dict(zip(keys, values))
         list_json.append(dict1)
-    dict = {user_id: [list_json]}
+    dict = dict({user_id: list_json})
     file_name = "{}.json".format(user_id)
     with open(file_name, "w") as jsonfile:
         json.dump(dict, jsonfile)
