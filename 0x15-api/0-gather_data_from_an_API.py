@@ -15,11 +15,9 @@ if __name__ == "__main__":
             num_completed += 1
 
     num_tasks = len(todos)
-    """ Get the name of the employee """
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     response = requests.get(url)
     employee_name = response.json()["name"]
-    """ progress report """
     print("Employee {} is done with tasks({}/{}):".format(
         employee_name, num_completed, num_tasks))
     for todo in todos:
