@@ -9,10 +9,10 @@ import sys
 
 if __name__ == "__main__":
     # get args
-    employee_id = sys.argv[1]
+    user_id = sys.argv[1]
     # fetch url from a fake api
     url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
-        employee_id)
+        user_id)
     response = requests.get(url)
     todos = response.json()
 
@@ -23,15 +23,15 @@ if __name__ == "__main__":
             num_completed += 1
 
     num_tasks = len(todos)
-    # retrieve employee name and save as csv
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    # retrieve username and save as csv
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
     response = requests.get(url)
-    employee_name = response.json()["name"]
+    user_name = response.json()["username"]
     csv_data = []
     for todo in todos:
         csv_data.append(
-            [employee_id, employee_name, todo['completed'], todo['title']])
-    file_name = "{}.csv".format(employee_id)
+            [user_id, user_name, todo['completed'], todo['title']])
+    file_name = "{}.csv".format(user_id)
 
     with open(file_name, "w", newline='') as csv_file:
         csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
