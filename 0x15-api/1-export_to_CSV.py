@@ -10,19 +10,20 @@ import sys
 if __name__ == "__main__":
     # get args
     employee_id = sys.argv[1]
-    # retrieve url
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    # fetch url from a fake api
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        employee_id)
     response = requests.get(url)
     todos = response.json()
 
-    # get the number of completed to-dos
+    # get the count for number of completed to-dos
     num_completed = 0
     for todo in todos:
         if todo["completed"]:
             num_completed += 1
 
-    # retrieve the todo and save as csv
     num_tasks = len(todos)
+    # retrieve employee name and save as csv
     url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     response = requests.get(url)
     employee_name = response.json()["name"]
