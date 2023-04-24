@@ -18,7 +18,7 @@ if __name__ == "__main__":
             num_completed += 1
 
     num_tasks = len(todos)
-    url = f"https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     response = requests.get(url)
     # get employee name and print the result
     employee_name = response.json()["name"]
