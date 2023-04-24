@@ -34,5 +34,5 @@ if __name__ == "__main__":
     file_name = "{}.csv".format(employee_id)
 
     with open(file_name, "w", newline='') as csv_file:
-        csv_writer = csv.writer(csv_file)
+        csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         csv_writer.writerows(csv_data)
