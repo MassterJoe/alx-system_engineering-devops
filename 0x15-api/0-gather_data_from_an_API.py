@@ -5,7 +5,7 @@ import sys
 
 if __name__ == "__main__":
     employee_id = sys.argv[1]
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
     response = requests.get(url)
     todos = response.json()
 
@@ -15,7 +15,7 @@ if __name__ == "__main__":
             num_completed += 1
 
     num_tasks = len(todos)
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    url = f"https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     response = requests.get(url)
     employee_name = response.json()["name"]
     print("Employee {} is done with tasks({}/{}):".format(
