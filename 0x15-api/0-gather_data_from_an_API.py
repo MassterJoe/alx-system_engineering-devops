@@ -24,7 +24,7 @@ if __name__ == "__main__":
     response = requests.get(url)
     employee_name = response.json()["name"]
     # progress report
-    print("Employee {} is done with tasks {}/{}".format(
+    print("Employee {} is done with tasks{}/{}:".format(
         employee_name, num_completed, num_tasks))
     for todo in todos:
         if todo["completed"]:
