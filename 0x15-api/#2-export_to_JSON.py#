@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+"""Extend your Python script to export data in the JSON format.
+Requirements:
+    Records all tasks that are owned by this employee
+    File name must be: USER_ID.json."""
+import json
+import requests
+import sys
+
+
+if __name__ == "__main__":
+    # get args
+    user_id = sys.argv[1]
+    # fetch url from a fake api
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        user_id)
+    response = requests.get(url)
+    todos = response.json()
+
+    # get the count for number of completed to-dos
+    num_completed = 0
+    for todo in todos:
+        if todo["completed"]:
+            num_completed += 1
+
+    num_tasks = len(todos)
+    # retrieve username and save as csv
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    response = requests.get(url)
+    user_name = response.json()["username"]
+    json_dict = {}
+    list_json = [{"task": todo['title'], "completed": todo['completed'], "username": user_name}]
+    for todo in todos:
+        json_dict.append(list_json)
+    dict = {user_id: json_list}
+    file_name = "{}.json".format(user_id)
+    with open(file_name, "w") as jsonfile:
+        json.dump(dict, jsonfile)
